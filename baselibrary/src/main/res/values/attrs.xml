@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--扩散圆颜色-->
+    <attr name="diffuse_color" format="color" />
+    <!--中心圆颜色-->
+    <attr name="diffuse_coreColor" format="color" />
+    <!--中心圆图片-->
+    <attr name="diffuse_coreImage" format="reference" />
+    <!--中心圆半径-->
+    <attr name="diffuse_coreRadius" format="float" />
+    <!--扩散圆宽度,值越小越宽-->
+    <attr name="diffuse_width" format="integer" />
+    <!--最大扩散宽度-->
+    <attr name="diffuse_maxWidth" format="integer" />
+    <!--扩散速度，值越大越快-->
+    <attr name="diffuse_speed" format="integer" />
+    <attr name="iconSize" format="dimension"/>
+    <attr name="iconMargin" format="dimension"/>
+    <attr name="iconSrc" format="reference"/>
+    <attr name="iconLeft" format="reference"/>
+    <attr name="iconRight" format="reference"/>
+    <attr name="duration_max" format="integer"/>
+    <declare-styleable name="JCameraView">
+        <attr name="iconSize"/>
+        <attr name="iconMargin"/>
+        <attr name="iconSrc"/>
+        <attr name="iconLeft"/>
+        <attr name="iconRight"/>
+        <attr name="duration_max"/>
+    </declare-styleable>
+    <declare-styleable name="DiffuseView">
+        <attr name="diffuse_color" />
+        <attr name="diffuse_coreColor" />
+        <attr name="diffuse_coreImage" />
+        <attr name="diffuse_coreRadius" />
+        <attr name="diffuse_width" />
+        <attr name="diffuse_maxWidth" />
+        <attr name="diffuse_speed" />
+    </declare-styleable>
+    <declare-styleable name="XTabLayout">
+        <attr name="xTabIndicatorHeight" format="dimension" />
+        <attr name="xTabIndicatorWidth" format="dimension" />
+        <attr name="xTabIndicatorColor" format="color" />
+        <attr name="xTabPadding" format="dimension" />
+        <attr name="xTabPaddingStart" format="dimension" />
+        <attr name="xTabPaddingTop" format="dimension" />
+        <attr name="xTabPaddingEnd" format="dimension" />
+        <attr name="xTabPaddingBottom" format="dimension" />
+        <attr name="xTabTextAppearance" format="reference" />
+        <attr name="xTabTextColor" format="color" />
+        <attr name="xTabSelectedTextColor" format="color" />
+        <attr name="xTabMinWidth" format="dimension" />
+        <attr name="xTabMaxWidth" format="dimension" />
+        <attr name="xTabBackgroundColor" format="reference|color" />
+        <attr name="xTabSelectedBackgroundColor" format="reference|color" />
+        <attr name="xTabContentStart" format="dimension" />
+        <attr name="xTabMode">
+            <enum name="scrollable" value="0x00000000" />
+            <enum name="fixed" value="0x00000001" />
+        </attr>
+        <attr name="xTabGravity" format="integer" />
+
+        <attr name="xTabTextSize" format="dimension" />
+        <attr name="xTabTextBold" format="boolean" />
+        <attr name="xTabSelectedTextSize" format="dimension" />
+        <attr name="xTabTextSelectedBold" format="boolean" />
+        <attr name="xTabDisplayNum" format="integer" />
+        <attr name="xTabTextAllCaps" format="boolean" />
+
+
+        <attr name="xTabDividerHeight" format="dimension" />
+        <attr name="xTabDividerWidth" format="dimension" />
+        <attr name="xTabDividerWidthWidthText" format="boolean" />
+        <attr name="xTabDividerColor" format="color" />
+        <attr name="xTabDividerGravity">
+            <enum name="top" value="0x00000000" />
+            <enum name="center" value="0x00000001" />
+            <enum name="bottom" value="0x00000002" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="FlowViewHorizontal">
+        <attr name="h_bg_radius" format="dimension" />
+        <attr name="h_pro_radius" format="dimension" />
+        <attr name="h_bg_width" format="dimension" />
+        <attr name="h_bg_color" format="color" />
+        <attr name="h_pro_width" format="dimension" />
+        <attr name="h_pro_color" format="color" />
+        <attr name="h_text_padding" format="dimension" />
+        <attr name="h_time_padding" format="dimension" />
+        <attr name="h_max_step" format="integer" />
+        <attr name="h_textsize" format="dimension" />
+        <attr name="h_pro_step" format="integer" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.gCompileSdkVersion
+    defaultConfig {
+        applicationId "com.tengshi.basetengshi"
+        minSdkVersion rootProject.ext.gMinSdkVersion
+        targetSdkVersion rootProject.ext.gTargetSdkVersion
+        versionCode rootProject.ext.gVersionCode
+        versionName rootProject.ext.gVersionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dexOptions {
+        preDexLibraries = false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.appcompat:appcompat:$rootProject.ext.gAppcompat"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.ext.gConstraintlayout"
+    testImplementation "junit:junit:$rootProject.ext.gJunit"
+    androidTestImplementation "androidx.test:runner:$rootProject.ext.gTestRunner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.gEspressoCore"
+    //Room
+    implementation "androidx.room:room-runtime:$rootProject.ext.gRoomVersion"
+    implementation "androidx.room:room-rxjava2:$rootProject.ext.gRoomVersion"
+    implementation project(':baselibrary')
+}

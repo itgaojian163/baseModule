@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_rectangle_white"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_update_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_update"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/tv_update_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_update_title"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        tools:text="新版本上线已经上线!升级享受新版本新版本上线已经上线!升级享受新版本新版本上线已经上线!升级享受新版本新版本上线已经上线!升级享受新版本新版本上线已经上线!升级享受新版本新版本上线已经上线!升级享受新版本" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_update_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:gravity="right|bottom"
+        android:orientation="horizontal"
+        android:paddingRight="15dp">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/btn_update_white"
+            android:layout_marginRight="10dp"
+            android:text="@string/cancel"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_confirm"
+            style="@style/btn_update_white"
+            android:text="@string/update_confirm"
+            android:textColor="@color/col_btn_blue" />
+    </LinearLayout>
+</RelativeLayout>

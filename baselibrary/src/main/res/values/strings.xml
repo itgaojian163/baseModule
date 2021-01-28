@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">BaseModule</string>
+    <string name="album">相&#160;&#160;册</string>
+    <string name="shoot">拍&#160;&#160;摄</string>
+    <string name="file">文&#160;&#160;件</string>
+    <string name="cancel">取&#160;&#160;消</string>
+    <string name="title_update">提&#160;示</string>
+    <string name="update_confirm">立即下载</string>
+    <string name="empty_data">未能找到相关内容</string>
+    <string name="loading">正在加载..</string>
+    <string name="loading_init">请输入查询的内容</string>
+    <string name="loading_error">内容加载失败.</string>
+    <string name="loading_net">请检查网络设置</string>
+    <string name="check_imgurl">请检查图片地址</string>
+    <string name="vw_no_photo_app">没有可用的拍照应用</string>
+    <string name="vw_no_audio_play_app">没有可用的音频播放应用</string>
+    <string name="vw_no_video_app">没有可用的视频录制应用</string>
+    <string name="vw_no_audio_app">没有可用的音频录制应用</string>
+    <string name="img_position">%1$d&#160;&#160;/&#160;&#160;%2$d</string>
+    <string name="nomore_data">---没有更多数据了---</string>
+    <!--    动画时间(单位：毫秒)-->
+    <string name="li_dialog_duration_default">200</string>
+    <string name="li_dialog_duration_scale">200</string>
+    <string name="li_dialog_duration_left">200</string>
+    <string name="li_dialog_duration_top">200</string>
+    <string name="li_dialog_duration_right">200</string>
+    <string name="li_dialog_duration_bottom">200</string>
+</resources>

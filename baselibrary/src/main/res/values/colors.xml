@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="row_active">#efefef</color>
+    <color name="colorPrimary">#da4d26</color>
+    <color name="colorPrimaryDark">#a93409</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="fab_bg_color">#AA0C0C0C</color>
+    <color name="transparent_black">#94333232</color>
+    <color name="checkbox_color">#FB4846</color>
+    <color name="checkbox_unchecked_color">#DFDFDF</color>
+    <color name="search_icon_color">@android:color/white</color>
+
+    <color name="partTranslucent">#39000000</color>
+
+    <color name="app_title">#D70715</color>
+    <color name="home_tab_title_color">#D5061A</color>
+    <color name="trans_black">#88000000</color>
+    <color name="trans_white">#88FFFFFF</color>
+    <color name="yellow">#E8CF6B</color>
+    <color name="yellow1">#F3BB44</color>
+    <color name="black_70">#9B9B9B</color>
+    <color name="telephone_contacts">#e7e6e6</color>
+    <color name="telephone_name">#000</color>
+    <color name="cardview_dark_background">#FF202020</color>
+    <!--textColor-->
+    <color name="text_yellow">#FF7816</color>
+    <color name="text_green">#27BA0D</color>
+    <color name="text_gray">#8E8E8E</color>
+    <color name="text_gray01">#535353</color>
+    <color name="text_gray02">#7C7C7C</color>
+    <color name="text_blue">#00A6FE</color>
+    <color name="notify_text_color">#FF8B00</color>
+    <!--及时通讯颜色-->
+    <!-- 页面背景色 -->
+    <color name="backgroud_color">#EFEFEF</color>
+    <color name="splash_backgroud_color">#e8efef</color>
+    <!-- 白色 -->
+    <color name="white">#ffffff</color>
+    <color name="white_bg">#77FFFFFF</color>
+    <!--粉色-->
+    <color name="pink">#FF84A9</color>
+    <!-- 黑色 -->
+    <color name="black">#000000</color>
+    <!--考勤详情表格颜色-->
+    <color name="gray_line">#D8D5D5</color>
+    <!-- 透明颜色 -->
+    <!-- 对话框按钮按下颜色 -->
+    <color name="dialog_btn_d_color">#E0CCCCCC</color>
+    <!-- 对话框按钮正常颜色 -->
+    <color name="dialog_btn_n_color">#E0ffffff</color>
+    <!-- 对话框按钮文字颜色 -->
+    <color name="dialog_text_color">#0079ff</color>
+    <!-- 列表分隔线颜色 -->
+    <color name="divider_line_color">#C8C7CC</color>
+    <!-- Tabbar文字选中颜色 -->
+    <color name="tab_text_d_color">#007BFD</color>
+    <!-- Tabbar文字正常颜色 -->
+    <color name="tab_text_n_color">#898989</color>
+    <!-- 登录文本框默认文本颜色 -->
+    <color name="hint_color">#C7C7C7</color>
+    <!-- 标题栏按钮文字颜色 -->
+    <color name="title_right_text_color">#007BFD</color>
+    <!-- 标题栏标题文字颜色 -->
+    <color name="tab_color">#4a4a4a</color>
+    <color name="title_color">#4a4a4a</color>
+    <color name="content_color">#707070</color>
+    <!-- 新用户注册字体颜色 -->
+    <color name="new_user_register_text_color">#8A8A8A</color>
+    <!-- ListViewItem按下时颜色 -->
+    <color name="high_lighted_color">#44B9F6</color>
+    <!-- 应用中所用的字体灰色 -->
+    <color name="content_gray_color">#999999</color>
+    <!-- 搜索背景颜色 -->
+    <color name="search_bg_color">#D9D9D9</color>
+    <!-- 会话列表删除背景 -->
+    <color name="delete_session_btn_color">#DC5041</color>
+    <!-- 好友搜索背景颜色 -->
+    <color name="search_dialog_bg">#b0000000</color>
+    <color name="file_len_text_color">#686767</color>
+    <color name="diyishuji_text_color">#535353</color>
+    <color name="transparent">#00000000</color>
+    <color name="titleBar">#008cff</color>
+    <!--我的页面灰色背景-->
+    <color name="bg_gray">#FCF9F2</color>
+    <color name="gray_bg">#f7f7f7</color>
+    <color name="gray">#F2F2F2</color>
+
+    <color name="home_background">#f5f5f5</color>
+    <color name="gray_text">#777777</color>
+    <color name="my_blue_bg">#ff7271</color>
+    <color name="button_bg">#8bc6f7</color>
+    <color name="sifazhuanti_bg">#f4f4f4</color>
+    <color name="other">#6E7B8B</color>
+    <color name="huiyi_title_color">#535353</color>
+    <color name="nomal">#1583F4</color><!--正常-->
+    <color name="evection">#0DEB00</color><!--公出-->
+    <color name="vacation">#15E8F1</color><!--请假-->
+    <color name="late">#FF3737</color><!--迟到-->
+    <color name="absenteeism">#FCCC24</color><!--旷工-->
+    <color name="recess">#E53591</color><!--放假-->
+    <color name="overtime">#A50F77</color><!--加班-->
+    <color name="hudongjicengblack">#272A2D</color><!--加班-->
+    <color name="hudongjicenggray">#979797</color><!--加班-->
+
+    <color name="dangneijiaoliu_gray">#F4F4F4</color><!--加班-->
+    <color name="view_bg">#F4EFF1</color>
+    <color name="md_grey_700">#616161</color>
+    <color name="md_grey_900">#212121</color>
+
+    <color name="dangfei_gray">#6B6B6B</color>
+    <color name="dangfei_mingxi">#FB976D</color>
+
+    <color name="input_hint">#888</color>
+    <color name="input_after">#555</color>
+
+    <color name="dangfei_text">#545454</color>
+    <color name="bg">#FBF9F1</color>
+
+    <color name="text_9d">#9D9D9D</color>
+    <color name="gray_f4">#F4F4F4</color>
+    <color name="gray_f1">#fbf8f1</color>
+    <color name="gray_df">#dfdfdf</color>
+    <color name="gray_bf">#bfbfbf</color>
+    <color name="gray_ef">#efeff4</color>
+    <color name="line">#efefef</color>
+    <color name="gray_f5">#F5F5F5</color>
+    <color name="gray_tr_hint">#aa000000</color>
+
+    <color name="teb_unselected">#b4b4b4</color>
+    <color name="teb_selected">#d70715</color>
+
+    <color name="base_bg">#fbf8f1</color>
+    <color name="base_line">#efefef</color>
+    <color name="base_item_text">#535353</color>
+
+    <drawable name="tab_gray">@color/bg_gray</drawable>
+    <drawable name="tab_white">@android:color/white</drawable>
+
+    <!--字体颜色-->
+    <!--<color name="text_write_FF">#FFFFFF</color>
+    <color name="text_write_FD">#FFFFFD</color>-->
+    <color name="text_write">#ffffff</color>
+    <color name="text_write_FF">#525252</color>
+    <color name="text_write_AA">#AAA</color>
+    <color name="text_write_FD">#525252</color>
+    <color name="text_black_52">#525252</color>
+    <color name="text_black_EB1">#525252</color>
+    <color name="text_black_8F">#8F8F8F</color>
+    <color name="text_black_53">#535353</color>
+    <color name="text_gray_66">#666666</color>
+    <color name="text_yellow_703">#D23703</color>
+    <color name="text_blue1">#216cd8</color>
+    <color name="activity_title">#216cd8</color>
+    <color name="panel_black">#182026</color>
+
+    <!--bg-->
+    <color name="activity_bg">#182026</color>
+    <!--bg-->
+    <color name="activity_00">#00000000</color>
+    <color name="line_bg_EF">#EFEFEF</color>
+    <color name="activity">#FFFFFF</color>
+    <!--学习考试-->
+    <!-- 白色 -->
+    <color name="blue">#99B1DC</color>
+    <color name="btn_yellow">#AAFD9521</color>
+    <color name="btn_blue">#AA1BAAE2</color>
+    <color name="btn_green">#AA37B54A</color>
+    <color name="btn_purple">#AA6B6FD2</color>
+</resources>
