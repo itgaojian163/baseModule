@@ -31,6 +31,11 @@ public class ConditionActivity extends BaseActivity {
     }
 
     @Override
+    protected void reLoadData() {
+
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         mBind.unbind();

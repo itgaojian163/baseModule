@@ -36,7 +36,8 @@ public interface TestApiService {
 
     @GET("appTest/getGetData")
     Observable<BaseResponseBean<TestDataBean, TestPhotoBean>> getGetData();
-//    public static final String UPLOAD_IMG = BASE_URL + "appfile/asyncAploadFileImg";
+
+    //    public static final String UPLOAD_IMG = BASE_URL + "appfile/asyncAploadFileImg";
     @Multipart
     @POST("appfile/asyncAploadFileImg")
     Observable<BaseResponseBean<TestDataBean, TestPhotoBean>> uploadFile(@Part("file") MultipartBody.Part file);

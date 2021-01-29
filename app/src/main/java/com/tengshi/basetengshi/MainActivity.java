@@ -85,4 +85,9 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_3).setOnClickListener(v -> {
         });
     }
+
+    @Override
+    protected void reLoadData() {
+
+    }
 }

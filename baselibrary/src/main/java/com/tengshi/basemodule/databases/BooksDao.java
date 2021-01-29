@@ -15,34 +15,9 @@ import androidx.room.Update;
  * 描述:
  */
 @Dao
-public interface BooksDao {
-    /**
-     * 新增
-     *
-     * @param t
-     */
-    @Insert
-    void insert(BookEntity... t);
-
-    /**
-     * 更新
-     *
-     * @param t
-     * @return
-     */
-    @Update
-    int update(BookEntity... t);
-
-    /**
-     * 删除
-     *
-     * @param goods
-     * @return
-     */
-    @Delete
-    int delete(BookEntity... goods);
+public interface BooksDao extends BaseDao<BookEntity> {
 
     @Query("select * from books")
-    public abstract List<BookEntity> getAll();
+    List<BookEntity> getAll();
 
 }

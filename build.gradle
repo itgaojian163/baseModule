@@ -7,8 +7,8 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-rc2'
+        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.1'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         // NOTE: Do not place your application dependencies here; they belong
@@ -54,9 +54,9 @@ ext {
     //butterknife
     gButterKnifeVersion = '10.0.0'
     //Gson
-    gGsonVersion = '2.8.5'
+    gGsonVersion = '2.8.6'
     //Retrofit
-    gRetrofitVersion = '2.5.0'
+    gRetrofitVersion = '2.9.0'
     //Rxjava
     gRxJavaVersion = '2.2.7'
     gRxAndroid = '2.1.1'

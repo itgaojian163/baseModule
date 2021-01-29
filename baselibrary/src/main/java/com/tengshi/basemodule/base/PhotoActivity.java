@@ -66,6 +66,11 @@ public class PhotoActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void reLoadData() {
+
+    }
+
 
     @Override
     protected void onDestroy() {

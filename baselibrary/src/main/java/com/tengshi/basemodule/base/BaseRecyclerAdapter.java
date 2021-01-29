@@ -43,7 +43,7 @@ public abstract class BaseRecyclerAdapter<T, H extends RecyclerView.ViewHolder> 
     public void onBindViewHolder(H holder, int position) {
         bindHolder(holder, position);
         if (mListener != null) {
-            holder.itemView.setOnClickListener(v -> mListener.onItemClickListen(mData.get(position)));
+            holder.itemView.setOnClickListener(v -> mListener.onItemClickListen(mData.get(position), position));
         }
     }
 
@@ -118,6 +118,6 @@ public abstract class BaseRecyclerAdapter<T, H extends RecyclerView.ViewHolder> 
      * @param <T> 将点击条目的Bean返回
      */
     public interface OnItemClicklistener<T> {
-        void onItemClickListen(T t);
+        void onItemClickListen(T t, int pos);
     }
 }

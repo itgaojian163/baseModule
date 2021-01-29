@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="100dp"
     android:layout_height="match_parent"
-    android:background="@color/blue"
-    tools:context=".core.widget.base.ConditionActivity">
+    android:background="@color/blue">
 
 </LinearLayout>

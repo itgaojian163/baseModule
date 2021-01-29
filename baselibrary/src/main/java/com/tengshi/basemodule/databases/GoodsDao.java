@@ -15,34 +15,10 @@ import androidx.room.Update;
  * 描述:
  */
 @Dao
-public interface GoodsDao {
-    /**
-     * 新增
-     *
-     * @param t
-     */
-    @Insert
-    void insert(GoodsEntity... t);
+public interface GoodsDao extends BaseDao<GoodsEntity> {
 
-    /**
-     * 更新
-     *
-     * @param t
-     * @return
-     */
-    @Update
-    int update(GoodsEntity... t);
-
-    /**
-     * 删除
-     *
-     * @param goods
-     * @return
-     */
-    @Delete
-    int delete(GoodsEntity... goods);
 
     @Query("select * from goods")
-    public abstract List<GoodsEntity> getAll();
+    List<GoodsEntity> getAll();
 
 }

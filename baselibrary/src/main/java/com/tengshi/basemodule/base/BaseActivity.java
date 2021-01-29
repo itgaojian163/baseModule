@@ -1,12 +1,16 @@
 package com.tengshi.basemodule.base;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -24,6 +28,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.tengshi.basemodule.R;
+import com.tengshi.basemodule.utils.NetworkUtils;
 import com.tengshi.basemodule.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -63,6 +68,7 @@ public abstract class BaseActivity extends FragmentActivity {
     private LinearLayout mLlSearchBar;
     private ImageView mIvAppSearchBack;
     private TextView mTvAppSearchTitle;
+    private NetworkChangedReceiver mNetworkChangedReceiver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,6 +95,8 @@ public abstract class BaseActivity extends FragmentActivity {
         initData();
         initMapView(savedInstanceState);//初始化MapView
         mRlNotify.setVisibility(View.GONE);
+        registerNetState();
+        mIvEmptyData.setOnClickListener(v -> reLoadData());
 
     }
 
@@ -130,6 +138,7 @@ public abstract class BaseActivity extends FragmentActivity {
             case STATE_LOAD_EMPTY://空数据
                 mPbLoading.setVisibility(View.GONE);
                 mIvEmptyData.setVisibility(View.VISIBLE);
+                mIvEmptyData.setImageResource(R.drawable.ic_empty_data);
                 mTvErrorHint.setVisibility(View.VISIBLE);
                 mTvErrorHint.setText(getResources().getString(R.string.empty_data));
                 flBaseActivityContent.setVisibility(View.INVISIBLE);
@@ -138,18 +147,28 @@ public abstract class BaseActivity extends FragmentActivity {
                 mPbLoading.setVisibility(View.GONE);
                 mIvEmptyData.setVisibility(View.VISIBLE);
                 mTvErrorHint.setVisibility(View.VISIBLE);
+                mIvEmptyData.setImageResource(R.drawable.ic_data_error);
                 mTvErrorHint.setText(getResources().getString(R.string.loading_error));
                 flBaseActivityContent.setVisibility(View.INVISIBLE);
                 break;
             case STATE_LOAD_NET://网络连接失败
                 mPbLoading.setVisibility(View.GONE);
                 mIvEmptyData.setVisibility(View.VISIBLE);
+                mIvEmptyData.setImageResource(R.drawable.ic_net_error);
                 mTvErrorHint.setVisibility(View.VISIBLE);
                 mTvErrorHint.setText(getResources().getString(R.string.loading_net));
                 flBaseActivityContent.setVisibility(View.INVISIBLE);
                 break;
         }
     }
+
+    /**
+     * 重新加载数据
+     * -网络错误
+     * -空数据
+     * -加载错误
+     */
+    protected abstract void reLoadData();
 
     /**
      * 重新启动App
@@ -306,6 +325,15 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     /**
+     * 注册网络状态改变广播
+     */
+    protected void registerNetState() {
+        mNetworkChangedReceiver = new NetworkChangedReceiver();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(mNetworkChangedReceiver, intentFilter);
+    }
+
+    /**
      * 将view的点击区域放大
      *
      * @param view             需要放大的view
@@ -323,5 +351,23 @@ public abstract class BaseActivity extends FragmentActivity {
             TouchDelegate touchDelegate = new TouchDelegate(rect, view);
             parentView.setTouchDelegate(touchDelegate);
         });
+    }
+
+
+    private class NetworkChangedReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            boolean connected = NetworkUtils.isConnected();
+            if (!connected) {
+                refreshView(STATE_LOAD_NET);
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(mNetworkChangedReceiver);
+        super.onDestroy();
     }
 }

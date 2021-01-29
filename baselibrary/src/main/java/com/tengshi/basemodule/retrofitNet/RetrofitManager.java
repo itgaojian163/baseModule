@@ -1,5 +1,6 @@
 package com.tengshi.basemodule.retrofitNet;
 
+import com.tengshi.basemodule.retrofitNet.conver.BaseUrlInterceptor;
 import com.tengshi.basemodule.retrofitNet.conver.CommInterceptor;
 
 import java.util.concurrent.TimeUnit;
@@ -50,7 +51,7 @@ public class RetrofitManager {
         //封装公共参数
         builder.addInterceptor(new CommInterceptor());
         //多BaseUrl连接器
-//        builder.addInterceptor(new BaseUrlInterceptor());
+        builder.addInterceptor(new BaseUrlInterceptor());
         OkHttpClient client = builder.build();
         mRetrofit = new Retrofit.Builder()
                 // 设置请求的域名
