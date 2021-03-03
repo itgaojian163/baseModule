@@ -6,14 +6,16 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
 
 /**
  * 作者 : Adam on 2018/6/15.
  * 邮箱 : itgaojian@163.com
  * 描述 : RecyclerView的适配器基类
  */
-public abstract class BaseRecyclerAdapter<D> extends RecyclerView.Adapter<BaseViewHolder> {
+public abstract class BaseRecyclerAdapter<D, VB extends ViewBinding> extends RecyclerView.Adapter<BaseViewHolder<VB>> {
     protected Context mContext;
     protected List<D> mData;
     protected OnItemClickListener<D> mListener;
@@ -27,8 +29,9 @@ public abstract class BaseRecyclerAdapter<D> extends RecyclerView.Adapter<BaseVi
         }
     }
 
+    @NonNull
     @Override
-    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseViewHolder<VB> onCreateViewHolder(ViewGroup parent, int viewType) {
         return createHolder(parent, viewType);
     }
 
@@ -37,7 +40,7 @@ public abstract class BaseRecyclerAdapter<D> extends RecyclerView.Adapter<BaseVi
      *
      * @return
      */
-    public abstract BaseViewHolder createHolder(ViewGroup parent, int viewType);
+    public abstract BaseViewHolder<VB> createHolder(ViewGroup parent, int viewType);
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
@@ -53,7 +56,7 @@ public abstract class BaseRecyclerAdapter<D> extends RecyclerView.Adapter<BaseVi
      * @param h ViewHolder
      * @param i 数据索引
      */
-    public abstract void bindHolder(BaseViewHolder h, int i);
+    public abstract void bindHolder(BaseViewHolder<VB> h, int i);
 
     /**
      * 更新数据
