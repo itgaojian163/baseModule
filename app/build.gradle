@@ -30,6 +30,9 @@ android {
     dexOptions {
         preDexLibraries = false
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {

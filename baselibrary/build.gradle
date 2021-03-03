@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
@@ -30,23 +29,24 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     //noinspection GradleCompatible
     api "com.android.support:design:$rootProject.ext.gAppcompatVersion_v7"
     //okhttp3
     api "com.squareup.okhttp3:okhttp:$rootProject.ext.gOkHttp3Version"
     //Gson
     api "com.google.code.gson:gson:$rootProject.ext.gGsonVersion"
-    //butterknife
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.gButterKnifeVersion"
     //Arouter
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.ext.gRouterCompileVersion"
     api "com.alibaba:arouter-api:$rootProject.ext.gRouterApiVersion"
@@ -59,8 +59,6 @@ dependencies {
     api "io.reactivex.rxjava2:rxandroid:$rootProject.ext.gRxAndroid"
     //Glide
     api "com.github.bumptech.glide:glide:$rootProject.ext.gGlideVersion"
-    //butterknife
-    api "com.jakewharton:butterknife:$rootProject.ext.gButterKnifeVersion"
     //recyclerview
     api "com.android.support:recyclerview-v7:$rootProject.ext.gAppcompatVersion_v7"
     //选择器
@@ -74,7 +72,7 @@ dependencies {
 
 
 }
-version = "0.0.1"
+version = "0.0.2"
 group = "com.tengshisoft.baseLibrary"
 def siteUrl = 'https://github.com/itgaojian163/baseModule'
 def gitUrl = 'https://github.com/itgaojian163/baseModule.git'

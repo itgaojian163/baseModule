@@ -13,21 +13,13 @@ import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.tengshi.basemodule.R;
+import com.tengshi.basemodule.databinding.ActivityBaseBinding;
 import com.tengshi.basemodule.utils.NetworkUtils;
 import com.tengshi.basemodule.utils.ToastUtils;
 
@@ -35,76 +27,65 @@ import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
+import androidx.viewbinding.ViewBinding;
 
 /**
  * 作者 : Adam on 2018/10/15.
  * 邮箱 : itgaojian@163.com
  * 描述 : 所有Activity的基类
  */
-public abstract class BaseActivity extends FragmentActivity {
+public abstract class BaseActivity<VB extends ViewBinding> extends FragmentActivity {
     public static final int STATE_LOAD_INIT = 13;
     public static final int STATE_LOAD_LOADING = 14;//加载中
     public static final int STATE_LOAD_SUCCESS = 15;//加载成功
     public static final int STATE_LOAD_EMPTY = 16;//加载失败
     public static final int STATE_LOAD_ERROR = 17;//加载失败
     public static final int STATE_LOAD_NET = 18;//网络连接失败
-    protected View mContentView;                 //每个activity的内容区域
-    public FrameLayout flBaseActivityContent;     //内容区域
+    protected VB mContentBinding;
+
     public Activity mActivity;                    //
 
     protected int mWidth = 0;
-    protected Button mIbBack;
-    protected TextView mTvBaseTitle;//标题
-    protected ProgressBar mPbLoading;
-    protected ImageView mIvEmptyData;
-    protected RelativeLayout mRlTitleBar;
-    protected TextView mTvErrorHint;
-    protected RelativeLayout mRlNotify;
-    protected ImageView mIvNotify;
-    protected TextView mTvNotify;
-    protected ImageView mIvAppBack;
-    protected TextView mTvAppTitleFunction;//titleBar功能图片
-    protected ImageView mIvAppTitleFunction;//titleBar功能文字
-    private LinearLayout mLlSearchBar;
-    private ImageView mIvAppSearchBack;
-    private TextView mTvAppSearchTitle;
     private NetworkChangedReceiver mNetworkChangedReceiver;
+    protected ActivityBaseBinding mBaseBinding;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
+        mBaseBinding = ActivityBaseBinding.inflate(getLayoutInflater());
+        setContentView(mBaseBinding.getRoot());
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         mWidth = metrics.widthPixels;
         mActivity = this;
         baseActivityInitViews();//初始化视图
         isMainActivity(false);
-        setTouchDelegate(mIvAppBack, 30);
-        mIvAppBack.setOnClickListener(v -> {
+        setTouchDelegate(mBaseBinding.ivAppBack, 30);
+        mBaseBinding.ivAppBack.setOnClickListener(v -> {
             hideSoftKeyboard();
             finish();
         });
-        mContentView = LayoutInflater.from(this).inflate(setLayoutId(), null);
-        flBaseActivityContent.addView(mContentView);
-        mContentView.setOnTouchListener((v, event) -> {
+        mContentBinding = setLayoutId();
+        mBaseBinding.flAppContent.addView(mContentBinding.getRoot());
+        mContentBinding.getRoot().setOnTouchListener((v, event) -> {
             hideSoftKeyboard();
             return false;
         });
         refreshView(STATE_LOAD_LOADING);
         initData();
         initMapView(savedInstanceState);//初始化MapView
-        mRlNotify.setVisibility(View.GONE);
+        mBaseBinding.rlNotify.setVisibility(View.GONE);
         registerNetState();
-        mIvEmptyData.setOnClickListener(v -> reLoadData());
+        mBaseBinding.ivAppEmptyData.setOnClickListener(v -> reLoadData());
 
     }
 
     protected void isMainActivity(boolean isMain) {
         if (isMain) {
-            mIvAppBack.setVisibility(View.GONE);
+            mBaseBinding.ivAppBack.setVisibility(View.GONE);
         } else {
-            mIvAppBack.setVisibility(View.VISIBLE);
+            mBaseBinding.ivAppBack.setVisibility(View.VISIBLE);
         }
     }
 
@@ -123,41 +104,41 @@ public abstract class BaseActivity extends FragmentActivity {
     public void refreshView(int state) {
         switch (state) {
             case STATE_LOAD_LOADING://加载中
-                mPbLoading.setVisibility(View.VISIBLE);
-                mIvEmptyData.setVisibility(View.GONE);
-                mTvErrorHint.setVisibility(View.VISIBLE);
-                mTvErrorHint.setText(getResources().getString(R.string.loading));
-                flBaseActivityContent.setVisibility(View.INVISIBLE);
+                mBaseBinding.pbAppLoading.setVisibility(View.VISIBLE);
+                mBaseBinding.tvAppErrorHint.setVisibility(View.GONE);
+                mBaseBinding.tvAppErrorHint.setVisibility(View.VISIBLE);
+                mBaseBinding.tvAppErrorHint.setText(getResources().getString(R.string.loading));
+                mBaseBinding.flAppContent.setVisibility(View.INVISIBLE);
                 break;
             case STATE_LOAD_SUCCESS://加载成功
-                mPbLoading.setVisibility(View.GONE);
-                mIvEmptyData.setVisibility(View.GONE);
-                mTvErrorHint.setVisibility(View.GONE);
-                flBaseActivityContent.setVisibility(View.VISIBLE);
+                mBaseBinding.pbAppLoading.setVisibility(View.GONE);
+                mBaseBinding.ivAppEmptyData.setVisibility(View.GONE);
+                mBaseBinding.tvAppErrorHint.setVisibility(View.GONE);
+                mBaseBinding.flAppContent.setVisibility(View.VISIBLE);
                 break;
             case STATE_LOAD_EMPTY://空数据
-                mPbLoading.setVisibility(View.GONE);
-                mIvEmptyData.setVisibility(View.VISIBLE);
-                mIvEmptyData.setImageResource(R.drawable.ic_empty_data);
-                mTvErrorHint.setVisibility(View.VISIBLE);
-                mTvErrorHint.setText(getResources().getString(R.string.empty_data));
-                flBaseActivityContent.setVisibility(View.INVISIBLE);
+                mBaseBinding.pbAppLoading.setVisibility(View.GONE);
+                mBaseBinding.ivAppEmptyData.setVisibility(View.VISIBLE);
+                mBaseBinding.ivAppEmptyData.setImageResource(R.drawable.ic_empty_data);
+                mBaseBinding.tvAppErrorHint.setVisibility(View.VISIBLE);
+                mBaseBinding.tvAppErrorHint.setText(getResources().getString(R.string.empty_data));
+                mBaseBinding.flAppContent.setVisibility(View.INVISIBLE);
                 break;
             case STATE_LOAD_ERROR://加载失败
-                mPbLoading.setVisibility(View.GONE);
-                mIvEmptyData.setVisibility(View.VISIBLE);
-                mTvErrorHint.setVisibility(View.VISIBLE);
-                mIvEmptyData.setImageResource(R.drawable.ic_data_error);
-                mTvErrorHint.setText(getResources().getString(R.string.loading_error));
-                flBaseActivityContent.setVisibility(View.INVISIBLE);
+                mBaseBinding.pbAppLoading.setVisibility(View.GONE);
+                mBaseBinding.ivAppEmptyData.setVisibility(View.VISIBLE);
+                mBaseBinding.tvAppErrorHint.setVisibility(View.VISIBLE);
+                mBaseBinding.ivAppEmptyData.setImageResource(R.drawable.ic_data_error);
+                mBaseBinding.tvAppErrorHint.setText(getResources().getString(R.string.loading_error));
+                mBaseBinding.flAppContent.setVisibility(View.INVISIBLE);
                 break;
             case STATE_LOAD_NET://网络连接失败
-                mPbLoading.setVisibility(View.GONE);
-                mIvEmptyData.setVisibility(View.VISIBLE);
-                mIvEmptyData.setImageResource(R.drawable.ic_net_error);
-                mTvErrorHint.setVisibility(View.VISIBLE);
-                mTvErrorHint.setText(getResources().getString(R.string.loading_net));
-                flBaseActivityContent.setVisibility(View.INVISIBLE);
+                mBaseBinding.pbAppLoading.setVisibility(View.GONE);
+                mBaseBinding.ivAppEmptyData.setVisibility(View.VISIBLE);
+                mBaseBinding.ivAppEmptyData.setImageResource(R.drawable.ic_net_error);
+                mBaseBinding.tvAppErrorHint.setVisibility(View.VISIBLE);
+                mBaseBinding.tvAppErrorHint.setText(getResources().getString(R.string.loading_net));
+                mBaseBinding.flAppContent.setVisibility(View.INVISIBLE);
                 break;
         }
     }
@@ -185,24 +166,24 @@ public abstract class BaseActivity extends FragmentActivity {
      * 初始化标题布局
      */
     private void baseActivityInitViews() {
-        mRlTitleBar = findViewById(R.id.rl_base_app_title_back);//文字标题titlebar
-        mLlSearchBar = findViewById(R.id.ll_app_search_title_bar); //搜索titlebar
-        mRlTitleBar.setVisibility(View.VISIBLE);
-        mLlSearchBar.setVisibility(View.GONE);
-        mIvAppSearchBack = findViewById(R.id.iv_app_search_back);
-        mTvAppSearchTitle = findViewById(R.id.tv_app_search_title);
-        mIvAppBack = findViewById(R.id.iv_app_back);
-        mIvAppTitleFunction = findViewById(R.id.iv_app_title_function);
-        flBaseActivityContent = findViewById(R.id.fl_app_content);
-        mTvBaseTitle = findViewById(R.id.tv_app_title_txt);
-        mTvAppTitleFunction = findViewById(R.id.tv_app_title_function);
-        mPbLoading = findViewById(R.id.pb_app_loading);
-        mIvEmptyData = findViewById(R.id.iv_app_empty_data);
-        mTvErrorHint = findViewById(R.id.tv_app_error_hint);
-        mRlNotify = findViewById(R.id.rl_notify);
-        mIvNotify = findViewById(R.id.iv_nootify_point);
-        mTvNotify = findViewById(R.id.tv_notify);
-        mIvAppSearchBack.setOnClickListener(v -> {
+//        mRlTitleBar = findViewById(R.id.rl_base_app_title_back);//文字标题titlebar
+//        mLlSearchBar = findViewById(R.id.ll_app_search_title_bar); //搜索titlebar
+//        mRlTitleBar.setVisibility(View.VISIBLE);
+//        mLlSearchBar.setVisibility(View.GONE);
+//        mIvAppSearchBack = findViewById(R.id.iv_app_search_back);
+//        mTvAppSearchTitle = findViewById(R.id.tv_app_search_title);
+//        mIvAppBack = findViewById(R.id.iv_app_back);
+//        mIvAppTitleFunction = findViewById(R.id.iv_app_title_function);
+//        flBaseActivityContent = findViewById(R.id.fl_app_content);
+//        mTvBaseTitle = findViewById(R.id.tv_app_title_txt);
+//        mTvAppTitleFunction = findViewById(R.id.tv_app_title_function);
+//        mPbLoading = findViewById(R.id.pb_app_loading);
+//        mIvEmptyData = findViewById(R.id.iv_app_empty_data);
+//        mTvErrorHint = findViewById(R.id.tv_app_error_hint);
+//        mRlNotify = findViewById(R.id.rl_notify);
+//        mIvNotify = findViewById(R.id.iv_nootify_point);
+//        mTvNotify = findViewById(R.id.tv_notify);
+        mBaseBinding.ivAppSearchBack.setOnClickListener(v -> {
             hideSoftKeyboard();
             finish();
         });
@@ -265,7 +246,7 @@ public abstract class BaseActivity extends FragmentActivity {
     /**
      * 初始化视图
      */
-    protected abstract int setLayoutId();
+    protected abstract VB setLayoutId();
 
     /**
      * 程序字号不随系统设置而改变

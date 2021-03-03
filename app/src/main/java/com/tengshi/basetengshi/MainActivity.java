@@ -4,9 +4,9 @@ import com.tengshi.basemodule.base.BaseActivity;
 import com.tengshi.basemodule.databases.GoodsDao;
 import com.tengshi.basemodule.databases.GoodsEntity;
 import com.tengshi.basemodule.databases.RoomDataBases;
-import com.tengshi.basemodule.retrofitNet.download.DownloadUtils;
 import com.tengshi.basemodule.utils.LogUtils;
 import com.tengshi.basemodule.widget.dialog.MDialog;
+import com.tengshi.basetengshi.databinding.ActivityMainBinding;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -19,18 +19,13 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
-
-    @Override
-    protected int setLayoutId() {
-        return R.layout.activity_main;
-    }
 
     @Override
     public void initData() {
         refreshView(STATE_LOAD_SUCCESS);
-        mTvBaseTitle.setText("基础库");
+        mBaseBinding.tvAppTitleTxt.setText("基础库");
         isMainActivity(true);
         UserBean bean = new UserBean();
         bean.setAge(123f);
@@ -90,4 +85,10 @@ public class MainActivity extends BaseActivity {
     protected void reLoadData() {
 
     }
+
+    @Override
+    protected ActivityMainBinding setLayoutId() {
+        return ActivityMainBinding.inflate(getLayoutInflater());
+    }
+
 }

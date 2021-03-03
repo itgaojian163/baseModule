@@ -1,11 +1,9 @@
 package com.tengshi.basemodule.base;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.tengshi.basemodule.R;
+import com.tengshi.basemodule.databinding.ActivityConditionBinding;
 import com.tengshi.basemodule.globalconfig.PathConfig;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * 作者: Adam
@@ -14,19 +12,12 @@ import butterknife.Unbinder;
  * 描述:
  */
 @Route(path = PathConfig.PATH_MODULE_CMUTILS_CONDITION)
-public class ConditionActivity extends BaseActivity {
+public class ConditionActivity extends BaseActivity<ActivityConditionBinding> {
 
-    private Unbinder mBind;
-
-    @Override
-    protected int setLayoutId() {
-        return R.layout.activity_condition;
-    }
 
     @Override
     public void initData() {
         super.initData();
-        mBind = ButterKnife.bind(this);
         refreshView(STATE_LOAD_SUCCESS);
     }
 
@@ -36,8 +27,12 @@ public class ConditionActivity extends BaseActivity {
     }
 
     @Override
+    protected ActivityConditionBinding setLayoutId() {
+        return ActivityConditionBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-        mBind.unbind();
     }
 }
