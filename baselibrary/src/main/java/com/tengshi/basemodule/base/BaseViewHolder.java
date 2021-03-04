@@ -13,7 +13,7 @@ import androidx.viewbinding.ViewBinding;
  * 描述:
  */
 public class BaseViewHolder<VB extends ViewBinding> extends RecyclerView.ViewHolder {
-    protected VB mHolderBinding;
+    public VB mHolderBinding;
 
     public BaseViewHolder(@NonNull VB holderBinding) {
         super(holderBinding.getRoot());
